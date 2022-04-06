@@ -25,6 +25,6 @@ public class ItemDelete : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        Debug.Log("‘Š‘Î‹——£: " + (unitychan.transform.position.z - transform.position.z));
+        //Debug.Log("‘Š‘Î‹——£: " + (unitychan.transform.position.z - transform.position.z));
     }
 }
