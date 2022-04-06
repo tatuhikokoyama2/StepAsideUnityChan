@@ -11,7 +11,7 @@ public class ItemGenerator : MonoBehaviour
     //cornPrefabを入れる
     public GameObject conePrefab;
     //スタート地点
-    private int starPos = 80;
+    private int startPos = 80;
     //ゴール地点
     private int goalPos = 360;
     //アイテムを出すx方向の範囲
@@ -90,9 +90,12 @@ public class ItemGenerator : MonoBehaviour
                     //コーンをx軸方向に一直線に生成
                     for (float j = -1; j <= 1; j += 0.4f)
                     {
-                        GameObject cone = Instantiate(conePrefab);
-                        //Unityちゃんの40ｍ先にアイテム生成
-                        cone.transform.position = new Vector3(4 * j, transform.position.y, this.unitychan.transform.position.z+40);
+                        if ((this.unitychan.transform.position.z + 40f > startPos) && (this.unitychan.transform.position.z + 40f < goalPos))
+                        {
+                            GameObject cone = Instantiate(conePrefab);
+                            //Unityちゃんの40ｍ先にアイテム生成
+                            cone.transform.position = new Vector3(4 * j, transform.position.y, this.unitychan.transform.position.z + 40);
+                        }
                     }
                 }
                 else
@@ -107,17 +110,23 @@ public class ItemGenerator : MonoBehaviour
                         //60%コイン：30%車配置：10%何もなし
                         if (1 <= item && item <= 6)
                         {
-                            //コインを生成
-                            GameObject coin = Instantiate(coinPrefab);
-                            //Unityちゃんの40ｍ先にアイテム生成
-                            coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, this.unitychan.transform.position.z+40 + offsetZ);
+                            if ((this.unitychan.transform.position.z + 40f > startPos) && (this.unitychan.transform.position.z + 40f < goalPos))
+                            {
+                                //コインを生成
+                                GameObject coin = Instantiate(coinPrefab);
+                                //Unityちゃんの40ｍ先にアイテム生成
+                                coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, this.unitychan.transform.position.z + 40 + offsetZ);
+                            }
                         }
                         else if (7 <= item && item <= 9)
                         {
-                            //車を生成
-                            GameObject car = Instantiate(carPrefab);
-                        　　//Unityちゃんの40ｍ先にアイテム生成
-                        　　car.transform.position = new Vector3(posRange * j, car.transform.position.y, this.unitychan.transform.position.z+40 + offsetZ);
+                            if ((this.unitychan.transform.position.z + 40f > startPos) && (this.unitychan.transform.position.z + 40f < goalPos))
+                            {
+                                //車を生成
+                                GameObject car = Instantiate(carPrefab);
+                                //Unityちゃんの40ｍ先にアイテム生成
+                                car.transform.position = new Vector3(posRange * j, car.transform.position.y, this.unitychan.transform.position.z + 40 + offsetZ);
+                            }
                         }
                     }
                 }
